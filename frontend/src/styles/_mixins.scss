@@ -1,0 +1,48 @@
+@use 'sass:color';
+@use 'sass:map';
+
+// 🧱 Flex Center (útil para centrar elementos fácilmente)
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// 🔁 Botón base reutilizable
+@mixin button-base($bg, $text: white) {
+  background-color: $bg;
+  color: $text;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: color.scale($bg, $lightness: -8%);
+  }
+
+  &:disabled {
+    background-color: color.scale($bg, $lightness: 20%);
+    cursor: not-allowed;
+  }
+}
+
+// 💻 Breakpoints responsive
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+);
+
+@mixin respond-to($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "⚠️ Breakpoint #{$breakpoint} not found.";
+  }
+}

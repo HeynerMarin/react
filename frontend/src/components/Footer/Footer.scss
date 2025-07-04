@@ -1,0 +1,124 @@
+@use '../../styles/variables' as *;
+
+.footer {
+  background-color: $gray-900;
+  color: $gray-100;
+  padding: 1rem 0;
+  font-family: $font-family-body;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease-out;
+
+  .footer-container {
+    display: flex;
+    flex-direction: row; // Por defecto en escritorio
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 2rem;
+    min-height: 60px;
+    opacity: 0;
+    animation: slideInFooter 0.8s ease-out 0.3s forwards;
+
+    // --- Media Query para Responsividad ---
+    @media (max-width: 768px) { // Aplica estos estilos en pantallas de 768px o menos
+      flex-direction: column; // Apila los elementos verticalmente
+      justify-content: center; // Centra los elementos apilados
+      text-align: center; // Centra el texto en general si no es un flex item directo
+      padding: 1rem 1rem; // Ajusta el padding para móviles
+      gap: 1rem; // Añade un pequeño espacio entre los elementos apilados
+    }
+  }
+
+  .footer-logo {
+    img {
+      height: 42px;
+      width: auto;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05) rotate(-2deg);
+      }
+    }
+  }
+
+  .footer-name {
+    position: absolute; // Posicionamiento absoluto para escritorio
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: $gray-400;
+    animation: pulseText 2s ease-in-out infinite;
+    white-space: nowrap; // Evita que el texto del nombre se rompa
+
+    // --- Media Query para Responsividad del Nombre ---
+    @media (max-width: 768px) {
+      position: static; // Elimina el posicionamiento absoluto en móvil
+      transform: none; // Restablece cualquier transformación
+      margin-top: 0.5rem; // Espacio superior para el nombre
+      margin-bottom: 0.5rem; // Espacio inferior para el nombre
+      white-space: normal; // Permite que el texto se ajuste en varias líneas si es necesario
+      font-size: 0.8rem; // Ajusta el tamaño de fuente en móvil si es muy grande
+    }
+     @media (max-width: 480px) {
+        font-size: 0.75rem; // Un poco más pequeño para teléfonos muy pequeños
+     }
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 1rem;
+    // --- Media Query para Responsividad de los Íconos Sociales ---
+    @media (max-width: 768px) {
+        justify-content: center; // Centra los íconos sociales en móvil
+        margin-top: 0.5rem; // Un poco de margen superior si es necesario
+    }
+
+
+    a {
+      color: $gray-100;
+      font-size: 1.3rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        color: $color-accent;
+        transform: translateY(-3px) scale(1.1);
+      }
+    }
+  }
+}
+
+// Animaciones (sin cambios)
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFooter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseText {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,580 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use 'sass:color'; // For color manipulation
+
+.about-me-page {
+  background-color: $background-color;
+  color: $text-color;
+  padding: 2rem 0;
+  overflow-x: hidden;
+
+  section {
+    margin-bottom: 5rem;
+    padding: 0 1rem;
+
+    @include respond-to(md) {
+      margin-bottom: 7rem;
+      padding: 0 2rem;
+    }
+    @include respond-to(lg) {
+        margin-bottom: 8rem;
+        padding: 0 4rem;
+    }
+  }
+
+  .wave-title {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: $color-accent;
+    text-align: center;
+
+    @include respond-to(md) {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    span {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: waveText 0.5s ease-out forwards;
+      white-space: pre;
+    }
+
+    .space {
+      width: 0.5rem;
+    }
+  }
+
+  // Hero Section
+  .hero-about {
+    text-align: center;
+    padding: 4rem 1rem;
+    background-color: $gray-900;
+    color: $gray-100;
+
+    @include respond-to(md) {
+      padding: 6rem 2rem;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid $color-accent;
+      box-shadow: 0 0 0 10px rgba($color-accent, 0.2);
+      margin-bottom: 2rem;
+      animation: fadeInZoom 1s ease-out;
+    }
+
+    .main-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: $color-primary;
+
+      @include respond-to(md) {
+        font-size: 3.5rem;
+      }
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: $text-light;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto;
+
+      @include respond-to(md) {
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  // My Story Section
+  .my-story {
+    .story-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+      line-height: 1.8;
+      font-size: 1rem;
+      color: $text-light;
+
+      p {
+        margin-bottom: 1.5rem;
+      }
+
+      @include respond-to(md) {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  // Skills Section
+  .skills-section {
+    .skills-intro {
+        text-align: center;
+        font-size: 1rem;
+        color: $text-light;
+        margin-bottom: 2.5rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include respond-to(md) {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      @include respond-to(md) {
+        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+    }
+
+    .skill-category-card {
+      background-color: $gray-900;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: left;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      @include respond-to(md) {
+        padding: 2rem;
+      }
+
+      h3 {
+        font-size: 1.3rem;
+        color: $color-primary;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid $color-accent;
+        padding-bottom: 0.5rem;
+        display: inline-block;
+
+        @include respond-to(md) {
+            font-size: 1.5rem;
+        }
+      }
+
+      .skill-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        .skill-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 0.8rem;
+          font-size: 0.95rem;
+          color: $text-light;
+
+          @include respond-to(md) {
+              font-size: 1rem;
+          }
+
+          .skill-icon {
+            font-size: 1.2rem;
+            color: $color-accent;
+            margin-right: 0.8rem;
+
+            @include respond-to(md) {
+                font-size: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Experience Section
+  .experience-section {
+    .experience-intro {
+        text-align: center;
+        font-size: 1rem;
+        color: $text-light;
+        margin-bottom: 3rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include respond-to(md) {
+            font-size: 1.1rem;
+            margin-bottom: 3.5rem;
+        }
+    }
+
+    .experience-timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      // Removed padding-left for mobile as the line will be centered
+      padding-bottom: 1px; // Small padding to ensure last circle has space if items are different heights
+
+      // The vertical line for mobile (left) and desktop (center)
+      &::before {
+        content: '';
+        position: absolute;
+        left: 20px; // Adjusted for mobile to be further right, but still on one side
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background-color: $gray-700;
+        border-radius: 2px;
+
+        @include respond-to(md) {
+            left: 50%; // Center line for desktop
+            transform: translateX(-50%);
+        }
+      }
+    }
+
+    .experience-item {
+      background-color: $gray-900;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+
+      // Circle on the timeline for mobile
+      &::after {
+        content: '';
+        position: absolute;
+        left: 10px; // Aligned with the timeline line on mobile
+        top: 1.5rem;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: $color-accent;
+        border: 3px solid $background-color;
+        z-index: 1;
+
+        @include respond-to(md) {
+            left: calc(50% - 10px); // Centered on the line for desktop
+        }
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      @include respond-to(md) {
+        width: 45%; // Items on either side of the line
+        padding: 2rem;
+        margin-bottom: 3.5rem;
+        // No floats needed, flexbox will handle alignment
+
+        &:nth-child(odd) { // Left side
+          margin-right: 55%; // Push it to the left side of the timeline
+          // Removed transform: translateX(-5%); for simplicity with flex, can add back if desired.
+        }
+        &:nth-child(even) { // Right side
+          margin-left: 55%; // Push it to the right side of the timeline
+          // Removed transform: translateX(5%); for simplicity with flex, can add back if desired.
+        }
+
+        // Adjust circle position for desktop to be on the correct side of the box
+        &:nth-child(odd)::after {
+          left: calc(100% + 25px); // Circle to the right of the box, on the main timeline
+        }
+        &:nth-child(even)::after {
+          left: -35px; // Circle to the left of the box, on the main timeline
+        }
+      }
+      // Remove float clearing as it's no longer necessary with flexbox
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    // New Flexbox container for experience items on desktop
+    @include respond-to(md) {
+      .experience-timeline {
+        display: flex;
+        flex-direction: column; // Stack items vertically
+        align-items: center; // Center the line
+      }
+
+      // Add a wrapper to each item to control its position relative to the centered line
+      // This is a common pattern when you want elements to "stick out" from a central line
+      .experience-item-wrapper { // You'd need to wrap each .experience-item in your JSX
+          position: relative;
+          width: 100%; // Takes full width to allow item to position itself
+          display: flex; // To help align the items to left/right
+          justify-content: center; // Default centered for no-op
+
+          &:nth-child(odd) {
+              justify-content: flex-start; // Push item to the left side
+          }
+          &:nth-child(even) {
+              justify-content: flex-end; // Push item to the right side
+          }
+
+          .experience-item {
+              width: 45%; // The item itself occupies 45% of the space
+              margin: 0; // Reset margins from previous float layout
+              margin-bottom: 3.5rem; // Re-add vertical spacing
+              // Remove explicit left/right margins from .experience-item itself if using wrapper flex
+          }
+      }
+    }
+
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .job-title {
+      font-size: 1.2rem;
+      color: $color-primary;
+      font-weight: 600;
+
+      @include respond-to(md) {
+          font-size: 1.5rem;
+      }
+    }
+
+    .job-period {
+      font-size: 0.85rem;
+      color: $gray-400;
+      white-space: nowrap;
+
+      @include respond-to(md) {
+          font-size: 0.95rem;
+      }
+    }
+
+    .job-company {
+      font-size: 1rem;
+      color: $color-accent;
+      margin-bottom: 1rem;
+
+      @include respond-to(md) {
+          font-size: 1.1rem;
+      }
+    }
+
+    .job-description {
+      list-style: disc;
+      margin-left: 1.5rem;
+      font-size: 0.9rem;
+      color: $text-light;
+      line-height: 1.6;
+
+      @include respond-to(md) {
+          font-size: 1rem;
+          margin-left: 1.8rem;
+      }
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  // Philosophy Section
+  .philosophy-section {
+    text-align: center;
+    .philosophy-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+
+      @include respond-to(md) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+      }
+      @include respond-to(lg) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .philosophy-card {
+      background-color: $gray-900;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .philosophy-icon {
+        font-size: 3rem;
+        color: $color-accent;
+        margin-bottom: 1rem;
+
+        @include respond-to(md) {
+            font-size: 3.5rem;
+        }
+      }
+
+      h3 {
+        font-size: 1.2rem;
+        color: $color-primary;
+        margin-bottom: 0.8rem;
+
+        @include respond-to(md) {
+            font-size: 1.4rem;
+        }
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: $text-light;
+        line-height: 1.6;
+
+        @include respond-to(md) {
+            font-size: 1.05rem;
+        }
+      }
+    }
+  }
+
+  // Interests Section
+  .interests-section {
+    text-align: center;
+    .interests-text {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: $text-light;
+
+      @include respond-to(md) {
+          font-size: 1.1rem;
+      }
+    }
+  }
+
+  // Final CTA Section
+  .about-cta {
+    text-align: center;
+    padding: 4rem 1rem;
+    background-color: $gray-900;
+    border-radius: 12px;
+
+    @include respond-to(md) {
+        padding: 5rem 2rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: $text-light;
+      max-width: 800px;
+      margin: 1.5rem auto 2.5rem;
+      line-height: 1.7;
+
+      @include respond-to(md) {
+          font-size: 1.2rem;
+          margin: 1.5rem auto 3rem;
+      }
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+
+      @include respond-to(md) {
+          gap: 2rem;
+      }
+
+      .btn {
+        padding: 0.8rem 1.8rem;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        text-align: center;
+
+        @include respond-to(md) {
+            padding: 1rem 2rem;
+        }
+      }
+
+      .btn-primary-cta {
+        background: $color-accent;
+        color: $background-color;
+        font-weight: 700;
+        box-shadow: 0 5px 15px rgba($color-accent, 0.4);
+
+        &:hover {
+          background: color.scale($color-accent, $lightness: -8%);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba($color-accent, 0.6);
+        }
+      }
+
+      .btn-tertiary-cta {
+        background: transparent;
+        border: 2px solid $color-primary;
+        color: $color-primary;
+
+        &:hover {
+          background: $color-primary;
+          color: $background-color;
+          transform: translateY(-3px);
+        }
+      }
+    }
+  }
+
+  // Animations
+  @keyframes waveText {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInZoom {
+      from {
+          opacity: 0;
+          transform: scale(0.8);
+      }
+      to {
+          opacity: 1;
+          transform: scale(1);
+      }
+  }
+}

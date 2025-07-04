@@ -1,0 +1,181 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use 'sass:color';
+
+.contact-page {
+    background-color: $background-color;
+    color: $text-color;
+    padding: 2rem 0;
+    overflow-x: hidden;
+
+    section {
+        margin-bottom: 5rem;
+        padding: 0 1rem;
+
+        @include respond-to(md) {
+            margin-bottom: 7rem;
+            padding: 0 2rem;
+        }
+        @include respond-to(lg) {
+            margin-bottom: 8rem;
+            padding: 0 4rem;
+        }
+    }
+
+    .wave-title { // Reusing the TitleWave styles from About.scss
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        font-weight: bold;
+        color: $color-accent;
+        text-align: center;
+
+        @include respond-to(md) {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        span {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: waveText 0.5s ease-out forwards;
+            white-space: pre;
+        }
+
+        .space {
+            width: 0.5rem;
+        }
+    }
+
+    // Hero Section for Contact Page
+    .contact-hero {
+        text-align: center;
+        padding: 4rem 1rem;
+        background-color: $gray-900;
+        color: $gray-100;
+
+        @include respond-to(md) {
+            padding: 6rem 2rem;
+        }
+
+        .contact-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: $color-primary;
+
+            @include respond-to(md) {
+                font-size: 3.5rem;
+            }
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: $text-light;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+
+            @include respond-to(md) {
+                font-size: 1.3rem;
+            }
+        }
+    }
+
+    // Contact Methods Section
+    .contact-info {
+        text-align: center;
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: 1fr; // Single column for mobile
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto 3rem; // Added bottom margin for spacing
+
+            @include respond-to(md) {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); // Responsive grid for tablet/desktop
+                gap: 2.5rem;
+            }
+        }
+
+        .contact-card {
+            background-color: $gray-900;
+            border-radius: 12px;
+            padding: 2rem;
+            text-decoration: none; // Remove underline from links
+            color: $text-color; // Inherit text color
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            &:hover {
+                transform: translateY(-8px); // More pronounced lift on hover
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            }
+
+            .contact-icon {
+                font-size: 4rem; // Large icon size
+                margin-bottom: 1rem;
+                color: $color-primary; // Default icon color, overridden by specific card types
+
+                @include respond-to(md) {
+                    font-size: 5rem; // Even larger on desktop
+                }
+            }
+
+            h3 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+                color: $color-primary;
+            }
+
+            p {
+                font-size: 1rem;
+                color: $text-light;
+                line-height: 1.5;
+            }
+
+            // Specific colors for icons
+            &.linkedin .contact-icon {
+                color: #0A66C2; // LinkedIn blue
+            }
+            &.whatsapp .contact-icon {
+                color: #25D366; // WhatsApp green
+            }
+            &.email .contact-icon {
+                color: #D44638; // Gmail red/orange, or a generic email blue/purple
+                // You could also use a custom color: color.scale($color-accent, $lightness: -20%);
+            }
+        }
+
+        .contact-note {
+            font-size: 1rem;
+            color: $text-light;
+            max-width: 700px;
+            margin: 2rem auto 0;
+            line-height: 1.6;
+
+            @include respond-to(md) {
+                font-size: 1.1rem;
+            }
+        }
+    }
+    // Animations (re-used from other SCSS files)
+    @keyframes waveText {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
