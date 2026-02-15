@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
 
 // Lazy loading de componentes pesados
 const Header = lazy(() => import('./components/Header/Header'));
@@ -36,8 +35,7 @@ const PageLoader = () => (
 
 function App() {
   return (
-    <HelmetProvider>
-      <div className="App">
+    <div className="App">
         {/* Structured Data global */}
         <PersonSchema />
         <WebSiteSchema />
@@ -61,7 +59,6 @@ function App() {
           <Footer />
         </Suspense>
       </div>
-    </HelmetProvider>
   );
 }
 
