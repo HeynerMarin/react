@@ -1,12 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/LogoSinFondo.png" />
+    <link rel="icon" href="/LogoSinFondo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <title>Heyner Marin React</title>
+
+    <title>Heyner Marin | Desarrollador Full Stack</title>
+
+    <!-- Preconnect para fuentes críticas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Font display swap para evitar bloqueo de render -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Inline CSS crítico para prevenir FOUC y CLS -->
+    <style>
+      /* Loading state básico */
+      #root { min-height: 100vh; }
+      /* Prevenir layout shift durante carga */
+      img { max-width: 100%; height: auto; }
+      /* Prevenir flash de contenido sin estilo */
+      body { margin: 0; font-family: 'Inter', sans-serif; }
+    </style>
   </head>
   <body>
     <div id="root"></div>

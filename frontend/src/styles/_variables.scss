@@ -1,41 +1,133 @@
-// 🎨 Paleta Informática Moderna / Estilo Dev
+// ============================================
+// 🎨 DESIGN TOKENS - Sistema de Diseño Minimalista
+// ============================================
 
-$color-primary: #0ff0fc;       // Cian Neón
-$color-secondary: #7c3aed;     // Púrpura eléctrico
-$color-accent: #f43f5e;        // Rosa vibrante
-$color-success: #22c55e;       // Verde brillante
-$color-danger: #f87171;        // Rojo suave
-$color-warning: #facc15;       // Amarillo dorado
-$color-info: #38bdf8;          // Azul cielo moderno
+// 🎨 Paleta de Colores Profesional Clara
+$color-primary: #0891b2;       // Cian profesional (más sobrio)
+$color-secondary: #6366f1;     // Índigo moderno
+$color-accent: #ef4444;        // Rojo profesional
+$color-success: #10b981;       // Verde esmeralda
+$color-danger: #ef4444;        // Rojo
+$color-warning: #f59e0b;       // Ámbar
+$color-info: #0ea5e9;          // Azul cielo
 
-// 🎨 Grises tecnológicos
-$gray-100: #1e1e2f;
-$gray-200: #2a2a3b;
-$gray-300: #39394d;
-$gray-400: #4b4b60;
-$gray-500: #5f5f74;
-$gray-600: #7a7a8c;
-$gray-700: #9b9bb0;
-$gray-800: #bcbcd0;
-$gray-900: #e0e0f0;
+// 🎨 Grises (Light Theme - Profesional)
+$gray-50: #fafafa;
+$gray-100: #f5f5f5;
+$gray-200: #e5e5e5;
+$gray-300: #d4d4d4;
+$gray-400: #a3a3a3;
+$gray-500: #737373;
+$gray-600: #525252;
+$gray-700: #404040;
+$gray-800: #262626;
+$gray-900: #171717;
 
-// 🎨 Fondo y texto
-$background-color: #0f1117;      // Fondo base muy oscuro
-$text-color: #e2e8f0;            // Texto claro
-$text-light: #a1a1aa;            // Texto secundario
+// 🎨 Fondo y Texto (Light Theme)
+$background-color: #ffffff;      // Fondo blanco limpio
+$surface-color: #fafafa;         // Superficie gris muy claro
+$surface-color-light: #f5f5f5;   // Superficie ligeramente más oscura
+$text-color: #171717;            // Texto oscuro (alto contraste)
+$text-light: #525252;            // Texto secundario
+$text-muted: #737373;            // Texto apagado
 
-// ✍️ Tipografía moderna
-$font-family-base: 'Inter', 'Segoe UI', sans-serif;
+// ✍️ Tipografía
+$font-family-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-family-titles: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-family-mono: 'Fira Code', 'Consolas', 'Monaco', monospace;
+
 $font-size-base: 16px;
 $line-height-base: 1.6;
+$line-height-tight: 1.2;
+$line-height-relaxed: 1.8;
 
-// 🧱 Espaciado base
-$spacing-unit: 1rem;
+// 📏 Escala Tipográfica Modular
+$font-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+$font-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+$font-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+$font-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+$font-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+$font-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+$font-3xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+$font-4xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+$font-5xl: clamp(3rem, 2.5rem + 2.5vw, 5rem);
 
-// 🌑 Dark mode
+// 🧱 Espaciado (Escala de 8px)
+$space-0: 0;
+$space-1: 0.25rem;    // 4px
+$space-2: 0.5rem;     // 8px
+$space-3: 0.75rem;    // 12px
+$space-4: 1rem;       // 16px
+$space-5: 1.25rem;    // 20px
+$space-6: 1.5rem;     // 24px
+$space-8: 2rem;       // 32px
+$space-10: 2.5rem;    // 40px
+$space-12: 3rem;      // 48px
+$space-16: 4rem;      // 64px
+$space-20: 5rem;      // 80px
+$space-24: 6rem;      // 96px
+
+// 📐 Border Radius
+$radius-none: 0;
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-2xl: 24px;
+$radius-full: 9999px;
+
+// 🌟 Sombras Modernas (Light Theme)
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.12);
+$shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15);
+
+// Sombras sutiles para cards
+$shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+$shadow-card-hover: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+
+// Sombras de color (más sutiles)
+$shadow-primary: 0 4px 12px rgba(8, 145, 178, 0.15);
+$shadow-secondary: 0 4px 12px rgba(99, 102, 241, 0.15);
+$shadow-accent: 0 4px 12px rgba(239, 68, 68, 0.15);
+
+// ⚡ Transiciones
+$transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slower: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+// Easing functions
+$ease-in: cubic-bezier(0.4, 0, 1, 1);
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// 🎭 Z-Index Scale
+$z-base: 1;
+$z-dropdown: 100;
+$z-sticky: 200;
+$z-fixed: 300;
+$z-modal: 400;
+$z-popover: 500;
+$z-tooltip: 600;
+$z-cursor: 9999;
+
+// 💎 Glassmorphism Config
+$glass-bg: rgba(255, 255, 255, 0.05);
+$glass-bg-hover: rgba(255, 255, 255, 0.08);
+$glass-border: rgba(255, 255, 255, 0.1);
+$glass-blur: blur(12px);
+$glass-blur-heavy: blur(20px);
+
+// 📱 Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-2xl: 1400px;
+
+// 🌑 Dark Mode
 $dark-background: #0d1117;
 $dark-text: #eaeef3;
-
-// 🖋️ Fuentes personalizadas
-$font-family-body: 'Inter', sans-serif;
-$font-family-titles: 'Space Grotesk', sans-serif;

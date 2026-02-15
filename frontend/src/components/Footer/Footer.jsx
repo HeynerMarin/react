@@ -11,7 +11,13 @@ const Footer = () => {
         {/* Logo con enlace al Home */}
         <div className="footer-logo">
           <Link to="/" aria-label="Inicio">
-            <img src={Logo} alt="Logo Heyner Marin" />
+            <img
+              src={Logo}
+              alt="Logo Heyner Marin"
+              width="42"
+              height="42"
+              loading="lazy"
+            />
           </Link>
         </div>
 
@@ -32,7 +38,7 @@ const Footer = () => {
             <FaLinkedin />
           </a>
           <a
-            href="https://wa.me/573196489740"
+            href="https://wa.me/573153719580"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"

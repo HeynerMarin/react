@@ -1,12 +1,15 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
-@use 'sass:color'; // For color manipulation
+@use 'sass:color';
 
 .about-me-page {
   background-color: $background-color;
   color: $text-color;
   padding: 2rem 0;
   overflow-x: hidden;
+
+  // Fondo sutil para toda la página
+  background: linear-gradient(180deg, $background-color 0%, $surface-color 100%);
 
   section {
     margin-bottom: 5rem;
@@ -26,15 +29,15 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    font-weight: bold;
-    color: $color-accent;
+    margin-bottom: $space-8;
+    font-size: $font-2xl;
+    font-weight: 700;
+    color: $color-secondary;
     text-align: center;
 
     @include respond-to(md) {
-      font-size: 2.5rem;
-      margin-bottom: 2.5rem;
+      font-size: $font-3xl;
+      margin-bottom: $space-10;
     }
 
     span {
@@ -45,19 +48,23 @@
     }
 
     .space {
-      width: 0.5rem;
+      width: $space-3;
     }
   }
 
   // Hero Section
   .hero-about {
     text-align: center;
-    padding: 4rem 1rem;
-    background-color: $gray-900;
-    color: $gray-100;
+    padding: $space-16 $space-6;
+    background: white;
+    border-radius: $radius-2xl;
+    box-shadow: $shadow-md;
+    border: 1px solid $gray-200;
+    max-width: 1000px;
+    margin: 0 auto;
 
     @include respond-to(md) {
-      padding: 6rem 2rem;
+      padding: $space-20 $space-12;
     }
 
     .hero-content {
@@ -70,31 +77,32 @@
       height: 180px;
       border-radius: 50%;
       object-fit: cover;
-      border: 6px solid $color-accent;
-      box-shadow: 0 0 0 10px rgba($color-accent, 0.2);
-      margin-bottom: 2rem;
+      border: 5px solid $color-accent;
+      box-shadow: 0 0 0 10px rgba($color-accent, 0.1);
+      margin-bottom: $space-8;
       animation: fadeInZoom 1s ease-out;
     }
 
     .main-title {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: $color-primary;
+      font-size: $font-3xl;
+      margin-bottom: $space-4;
+      color: $text-color;
+      font-weight: 800;
 
       @include respond-to(md) {
-        font-size: 3.5rem;
+        font-size: $font-4xl;
       }
     }
 
     .subtitle {
-      font-size: 1.1rem;
+      font-size: $font-base;
       color: $text-light;
-      line-height: 1.6;
+      line-height: $line-height-relaxed;
       max-width: 700px;
       margin: 0 auto;
 
       @include respond-to(md) {
-        font-size: 1.3rem;
+        font-size: $font-lg;
       }
     }
   }
@@ -105,16 +113,16 @@
       max-width: 800px;
       margin: 0 auto;
       text-align: left;
-      line-height: 1.8;
-      font-size: 1rem;
+      line-height: $line-height-relaxed;
+      font-size: $font-base;
       color: $text-light;
 
       p {
-        margin-bottom: 1.5rem;
+        margin-bottom: $space-6;
       }
 
       @include respond-to(md) {
-        font-size: 1.1rem;
+        font-size: $font-lg;
       }
     }
   }
@@ -123,59 +131,57 @@
   .skills-section {
     .skills-intro {
         text-align: center;
-        font-size: 1rem;
+        font-size: $font-base;
         color: $text-light;
-        margin-bottom: 2.5rem;
+        margin-bottom: $space-10;
         max-width: 700px;
         margin-left: auto;
         margin-right: auto;
 
         @include respond-to(md) {
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
+            font-size: $font-lg;
+            margin-bottom: $space-12;
         }
     }
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: $space-6;
       max-width: 1200px;
       margin: 0 auto;
 
       @include respond-to(md) {
-        gap: 2rem;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: $space-8;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       }
     }
 
     .skill-category-card {
-      background-color: $gray-900;
-      border-radius: 12px;
-      padding: 1.5rem;
+      background: white;
+      border: 1px solid $gray-200;
+      border-radius: $radius-xl;
+      padding: $space-8;
       text-align: left;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      box-shadow: $shadow-sm;
+      transition: all $transition-base;
 
       &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      }
-
-      @include respond-to(md) {
-        padding: 2rem;
+        transform: translateY(-4px);
+        box-shadow: $shadow-lg;
+        border-color: $gray-300;
       }
 
       h3 {
-        font-size: 1.3rem;
+        font-size: $font-xl;
         color: $color-primary;
-        margin-bottom: 1rem;
+        margin-bottom: $space-4;
         border-bottom: 2px solid $color-accent;
-        padding-bottom: 0.5rem;
+        padding-bottom: $space-2;
         display: inline-block;
 
         @include respond-to(md) {
-            font-size: 1.5rem;
+            font-size: $font-2xl;
         }
       }
 
@@ -187,21 +193,21 @@
         .skill-item {
           display: flex;
           align-items: center;
-          margin-bottom: 0.8rem;
-          font-size: 0.95rem;
+          margin-bottom: $space-3;
+          font-size: $font-base;
           color: $text-light;
 
           @include respond-to(md) {
-              font-size: 1rem;
+              font-size: $font-lg;
           }
 
           .skill-icon {
-            font-size: 1.2rem;
+            font-size: $font-xl;
             color: $color-accent;
-            margin-right: 0.8rem;
+            margin-right: $space-3;
 
             @include respond-to(md) {
-                font-size: 1.4rem;
+                font-size: $font-2xl;
             }
           }
         }
@@ -213,16 +219,16 @@
   .experience-section {
     .experience-intro {
         text-align: center;
-        font-size: 1rem;
+        font-size: $font-base;
         color: $text-light;
-        margin-bottom: 3rem;
+        margin-bottom: $space-12;
         max-width: 700px;
         margin-left: auto;
         margin-right: auto;
 
         @include respond-to(md) {
-            font-size: 1.1rem;
-            margin-bottom: 3.5rem;
+            font-size: $font-lg;
+            margin-bottom: $space-16;
         }
     }
 
@@ -230,173 +236,146 @@
       max-width: 900px;
       margin: 0 auto;
       position: relative;
-      // Removed padding-left for mobile as the line will be centered
-      padding-bottom: 1px; // Small padding to ensure last circle has space if items are different heights
+      padding-bottom: 1px;
 
-      // The vertical line for mobile (left) and desktop (center)
+      // Timeline line
       &::before {
         content: '';
         position: absolute;
-        left: 20px; // Adjusted for mobile to be further right, but still on one side
+        left: 20px;
         top: 0;
         height: 100%;
         width: 3px;
-        background-color: $gray-700;
+        background: linear-gradient(180deg, $color-primary, $color-secondary);
         border-radius: 2px;
 
         @include respond-to(md) {
-            left: 50%; // Center line for desktop
+            left: 50%;
             transform: translateX(-50%);
         }
       }
     }
 
     .experience-item {
-      background-color: $gray-900;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2.5rem;
+      background: white;
+      border: 1px solid $gray-200;
+      border-radius: $radius-xl;
+      padding: $space-6;
+      margin-bottom: $space-10;
       position: relative;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      box-shadow: $shadow-sm;
+      transition: all $transition-base;
 
-      // Circle on the timeline for mobile
+      // Timeline circle
       &::after {
         content: '';
         position: absolute;
-        left: 10px; // Aligned with the timeline line on mobile
-        top: 1.5rem;
+        left: 11px;
+        top: $space-6;
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background-color: $color-accent;
-        border: 3px solid $background-color;
-        z-index: 1;
+        background: $color-accent;
+        border: 4px solid white;
+        box-shadow: 0 0 0 2px $color-accent;
+        z-index: 10;
 
         @include respond-to(md) {
-            left: calc(50% - 10px); // Centered on the line for desktop
+          left: calc(100% + 15px);
         }
       }
 
       &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        transform: translateY(-4px);
+        box-shadow: $shadow-lg;
+        border-color: $gray-300;
       }
 
       @include respond-to(md) {
-        width: 45%; // Items on either side of the line
-        padding: 2rem;
-        margin-bottom: 3.5rem;
-        // No floats needed, flexbox will handle alignment
+        width: 45%;
+        padding: $space-8;
+        margin-bottom: $space-12;
 
-        &:nth-child(odd) { // Left side
-          margin-right: 55%; // Push it to the left side of the timeline
-          // Removed transform: translateX(-5%); for simplicity with flex, can add back if desired.
-        }
-        &:nth-child(even) { // Right side
-          margin-left: 55%; // Push it to the right side of the timeline
-          // Removed transform: translateX(5%); for simplicity with flex, can add back if desired.
+        &:nth-child(odd) {
+          margin-right: 55%;
+
+          &::after {
+            right: -37px;
+            left: auto;
+          }
         }
 
-        // Adjust circle position for desktop to be on the correct side of the box
-        &:nth-child(odd)::after {
-          left: calc(100% + 25px); // Circle to the right of the box, on the main timeline
-        }
-        &:nth-child(even)::after {
-          left: -35px; // Circle to the left of the box, on the main timeline
+        &:nth-child(even) {
+          margin-left: 55%;
+
+          &::after {
+            left: -37px;
+            right: auto;
+          }
         }
       }
-      // Remove float clearing as it's no longer necessary with flexbox
+
       &:last-child {
         margin-bottom: 0;
       }
     }
 
-    // New Flexbox container for experience items on desktop
-    @include respond-to(md) {
-      .experience-timeline {
-        display: flex;
-        flex-direction: column; // Stack items vertically
-        align-items: center; // Center the line
-      }
-
-      // Add a wrapper to each item to control its position relative to the centered line
-      // This is a common pattern when you want elements to "stick out" from a central line
-      .experience-item-wrapper { // You'd need to wrap each .experience-item in your JSX
-          position: relative;
-          width: 100%; // Takes full width to allow item to position itself
-          display: flex; // To help align the items to left/right
-          justify-content: center; // Default centered for no-op
-
-          &:nth-child(odd) {
-              justify-content: flex-start; // Push item to the left side
-          }
-          &:nth-child(even) {
-              justify-content: flex-end; // Push item to the right side
-          }
-
-          .experience-item {
-              width: 45%; // The item itself occupies 45% of the space
-              margin: 0; // Reset margins from previous float layout
-              margin-bottom: 3.5rem; // Re-add vertical spacing
-              // Remove explicit left/right margins from .experience-item itself if using wrapper flex
-          }
-      }
-    }
-
-
     .job-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 0.5rem;
+      margin-bottom: $space-3;
       flex-wrap: wrap;
     }
 
     .job-title {
-      font-size: 1.2rem;
+      font-size: $font-lg;
       color: $color-primary;
-      font-weight: 600;
+      font-weight: 700;
 
       @include respond-to(md) {
-          font-size: 1.5rem;
+          font-size: $font-xl;
       }
     }
 
     .job-period {
-      font-size: 0.85rem;
-      color: $gray-400;
+      font-size: $font-sm;
+      color: $text-muted;
       white-space: nowrap;
+      background: $gray-100;
+      padding: $space-1 $space-2;
+      border-radius: $radius-md;
 
       @include respond-to(md) {
-          font-size: 0.95rem;
+          font-size: $font-base;
       }
     }
 
     .job-company {
-      font-size: 1rem;
+      font-size: $font-base;
       color: $color-accent;
-      margin-bottom: 1rem;
+      margin-bottom: $space-4;
+      font-weight: 600;
 
       @include respond-to(md) {
-          font-size: 1.1rem;
+          font-size: $font-lg;
       }
     }
 
     .job-description {
       list-style: disc;
-      margin-left: 1.5rem;
-      font-size: 0.9rem;
+      margin-left: $space-6;
+      font-size: $font-base;
       color: $text-light;
-      line-height: 1.6;
+      line-height: $line-height-relaxed;
 
       @include respond-to(md) {
-          font-size: 1rem;
-          margin-left: 1.8rem;
+        font-size: $font-lg;
+        margin-left: $space-8;
       }
 
       li {
-        margin-bottom: 0.5rem;
+        margin-bottom: $space-2;
       }
     }
   }
@@ -407,13 +386,13 @@
     .philosophy-content {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: $space-8;
       max-width: 1000px;
       margin: 0 auto;
 
       @include respond-to(md) {
         grid-template-columns: repeat(2, 1fr);
-        gap: 3rem;
+        gap: $space-10;
       }
       @include respond-to(lg) {
         grid-template-columns: repeat(4, 1fr);
@@ -421,48 +400,51 @@
     }
 
     .philosophy-card {
-      background-color: $gray-900;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      background: white;
+      border: 1px solid $gray-200;
+      border-radius: $radius-xl;
+      padding: $space-8;
+      box-shadow: $shadow-sm;
+      transition: all $transition-base;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
 
       &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        transform: translateY(-4px);
+        box-shadow: $shadow-lg;
+        border-color: $gray-300;
       }
 
       .philosophy-icon {
-        font-size: 3rem;
+        font-size: $font-4xl;
         color: $color-accent;
-        margin-bottom: 1rem;
+        margin-bottom: $space-4;
 
         @include respond-to(md) {
-            font-size: 3.5rem;
+            font-size: $font-5xl;
         }
       }
 
       h3 {
-        font-size: 1.2rem;
+        font-size: $font-lg;
         color: $color-primary;
-        margin-bottom: 0.8rem;
+        margin-bottom: $space-3;
+        font-weight: 700;
 
         @include respond-to(md) {
-            font-size: 1.4rem;
+            font-size: $font-xl;
         }
       }
 
       p {
-        font-size: 0.95rem;
+        font-size: $font-base;
         color: $text-light;
-        line-height: 1.6;
+        line-height: $line-height-relaxed;
 
         @include respond-to(md) {
-            font-size: 1.05rem;
+          font-size: $font-lg;
         }
       }
     }
@@ -474,12 +456,12 @@
     .interests-text {
       max-width: 800px;
       margin: 0 auto;
-      font-size: 1rem;
-      line-height: 1.7;
+      font-size: $font-base;
+      line-height: $line-height-relaxed;
       color: $text-light;
 
       @include respond-to(md) {
-          font-size: 1.1rem;
+        font-size: $font-lg;
       }
     }
   }
@@ -487,24 +469,35 @@
   // Final CTA Section
   .about-cta {
     text-align: center;
-    padding: 4rem 1rem;
-    background-color: $gray-900;
-    border-radius: 12px;
+    padding: $space-16 $space-6;
+    background: linear-gradient(135deg, $color-secondary 0%, $color-primary 100%);
+    border-radius: $radius-2xl;
+    box-shadow: $shadow-lg;
+    max-width: 1000px;
+    margin: 0 auto;
 
     @include respond-to(md) {
-        padding: 5rem 2rem;
+        padding: $space-20 $space-12;
+    }
+
+    .wave-title {
+      color: white !important; // Forzar blanco para legibilidad
+
+      span {
+        color: white !important;
+      }
     }
 
     p {
-      font-size: 1.1rem;
-      color: $text-light;
+      font-size: $font-base;
+      color: rgba(255, 255, 255, 0.95);
       max-width: 800px;
-      margin: 1.5rem auto 2.5rem;
-      line-height: 1.7;
+      margin: $space-6 auto $space-10;
+      line-height: $line-height-relaxed;
 
       @include respond-to(md) {
-          font-size: 1.2rem;
-          margin: 1.5rem auto 3rem;
+        font-size: $font-lg;
+        margin: $space-8 auto $space-12;
       }
     }
 
@@ -512,47 +505,47 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 1.5rem;
+      gap: $space-6;
 
       @include respond-to(md) {
-          gap: 2rem;
+          gap: $space-8;
       }
 
       .btn {
-        padding: 0.8rem 1.8rem;
+        padding: $space-3 $space-6;
         font-weight: 600;
-        border-radius: 50px;
+        border-radius: $radius-full;
         cursor: pointer;
         text-decoration: none;
-        transition: all 0.3s ease;
+        transition: all $transition-base;
         text-align: center;
 
         @include respond-to(md) {
-            padding: 1rem 2rem;
+          padding: $space-4 $space-8;
         }
       }
 
       .btn-primary-cta {
-        background: $color-accent;
-        color: $background-color;
+        background: white;
+        color: $color-secondary;
         font-weight: 700;
-        box-shadow: 0 5px 15px rgba($color-accent, 0.4);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
         &:hover {
-          background: color.scale($color-accent, $lightness: -8%);
+          background: $gray-50;
           transform: translateY(-3px);
-          box-shadow: 0 8px 20px rgba($color-accent, 0.6);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
       }
 
       .btn-tertiary-cta {
         background: transparent;
-        border: 2px solid $color-primary;
-        color: $color-primary;
+        border: 2px solid white;
+        color: white;
 
         &:hover {
-          background: $color-primary;
-          color: $background-color;
+          background: white;
+          color: $color-secondary;
           transform: translateY(-3px);
         }
       }
@@ -568,13 +561,13 @@
   }
 
   @keyframes fadeInZoom {
-      from {
-          opacity: 0;
-          transform: scale(0.8);
-      }
-      to {
-          opacity: 1;
-          transform: scale(1);
-      }
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
   }
 }

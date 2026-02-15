@@ -1,0 +1,45 @@
+# robots.txt para Heyner Marin Portfolio
+# Este archivo indica a los crawlers qué páginas pueden rastrear
+
+User-agent: *
+Allow: /
+
+# Bloquear acceso a archivos de configuración y temporales
+Disallow: /api/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Permitir acceso a recursos estáticos importantes
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+
+# Sitemap
+Sitemap: https://heynermarin.com/sitemap.xml
+
+# Tiempo de rastreo (opcional, crawlers respetan esto como sugerencia)
+Crawl-delay: 1
+
+# SEO: Permitir indexación de todas las páginas importantes
+# Las páginas principales del portfolio
+Allow: /sobre-mi
+Allow: /contacto
+Allow: /portafolio
+
+# User-agent específico para Googlebot
+User-agent: Googlebot
+Allow: /
+
+# User-agent específico para Bing
+User-agent: Bingbot
+Allow: /
+
+# User-agent específico para Facebook
+User-agent: facebookexternalhit
+Allow: /
+
+# User-agent específico para Twitter
+User-agent: Twitterbot
+Allow: /

@@ -1,638 +1,543 @@
 @use '../../styles/variables' as *;
-@use '../../styles/mixins' as *; // Aquí se importan tus mixins flex-center, button-base, respond-to, etc.
-@use 'sass:color'; // Necesario para funciones como darken/lighten si se usan aquí
+@use '../../styles/mixins' as *;
+@use 'sass:color';
 
 .home {
   background-color: $background-color;
   color: $text-color;
-  padding: 2rem;
+  padding: $space-4;
   overflow-x: hidden;
 
+  background: linear-gradient(180deg, $background-color 0%, $surface-color 100%);
+
   section {
-    margin-bottom: 6rem;
-    padding: 0 2rem;
-
-    // Estilos por defecto para móviles, luego overrides con @include respond-to(md)
-    padding: 0 1rem; // Padding más ajustado para móviles por defecto
-    margin-bottom: 4rem; // Margen más pequeño para móviles por defecto
-
-    @include respond-to(md) { // Aplica estos estilos para pantallas 'md' (768px) y mayores
-        padding: 0 2rem; // Vuelve al padding de escritorio
-        margin-bottom: 6rem; // Vuelve al margen de escritorio
-    }
-  }
-
-  .hero {
-    text-align: center;
-    padding: 4rem 1rem; // Padding para móviles por defecto
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 50vh; // Altura mínima para móviles
-
-    @include respond-to(md) { // Para 'md' (768px) y mayores
-        padding: 6rem 2rem; // Padding para escritorio
-        min-height: 70vh; // Altura mínima para escritorio
-    }
-
-    h1 {
-      font-size: 2.5rem; // Tamaño para móviles por defecto
-      font-weight: bold;
-      color: $color-primary;
-      margin-bottom: 1rem;
-      // Ya que 'fluid-type' no está en tus mixins proporcionados, lo he comentado.
-      // @include fluid-type($min-font-size: 2.5rem, $max-font-size: 4.5rem, $min-vw: 320px, $max-vw: 1400px);
-
-      .wave-title {
-        display: inline-flex;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      @include respond-to(md) { // Para 'md' (768px) y mayores
-          font-size: 4.5rem; // Tamaño para escritorio
-      }
-    }
-
-    .tagline {
-      font-size: 1rem; // Tamaño para móviles por defecto
-      margin-top: 0.5rem;
-      color: $text-light;
-      max-width: 800px;
-      line-height: 1.6;
-      // Ya que 'fluid-type' no está en tus mixins proporcionados, lo he comentado.
-      // @include fluid-type($min-font-size: 1rem, $max-font-size: 1.5rem, $min-vw: 320px, $max-vw: 1400px);
-
-      @include respond-to(md) { // Para 'md' (768px) y mayores
-          font-size: 1.5rem; // Tamaño para escritorio
-      }
-    }
-
-    .cta-buttons {
-      margin-top: 2rem; // Margen para móviles por defecto
-      display: flex;
-      justify-content: center;
-      flex-direction: column; // Botones apilados en móvil por defecto
-      width: 100%;
-      max-width: 300px; // Limita el ancho de los botones apilados
-      gap: 1rem; // Espacio entre botones apilados
-
-      @include respond-to(md) { // Para 'md' (768px) y mayores
-        margin-top: 3rem; // Margen para escritorio
-        flex-direction: row; // Botones en fila en escritorio
-        max-width: none; // Restablece el ancho máximo
-        gap: 1.5rem; // Espacio para escritorio
-      }
-
-      .btn {
-        padding: 0.8rem 1.8rem; // Padding para móviles
-        font-weight: 600;
-        border-radius: 50px;
-        cursor: pointer;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        text-align: center;
-        width: 100%; // Ocupa todo el ancho en móvil
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            padding: 1rem 2rem; // Padding para escritorio
-            width: auto; // Ancho automático para escritorio
-        }
-      }
-
-      .btn-primary-cta {
-        background: $color-accent;
-        color: $background-color;
-        font-weight: 700;
-        box-shadow: 0 5px 15px rgba($color-accent, 0.4);
-
-        &:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 20px rgba($color-accent, 0.6);
-        }
-      }
-
-      .btn-secondary-cta {
-        background: $color-secondary;
-        color: #fff;
-        border: 2px solid $color-secondary;
-
-        &:hover {
-          background: color.scale($color-secondary, $lightness: -10%); // Usando sass:color
-          transform: translateY(-3px);
-        }
-      }
-
-      .btn-tertiary-cta {
-        background: transparent;
-        border: 2px solid $color-primary;
-        color: $color-primary;
-
-        &:hover {
-          background: $color-primary;
-          color: $background-color;
-          transform: translateY(-3px);
-        }
-      }
-    }
-  }
-
-  .about-summary {
-    text-align: center;
-    background-color: $gray-900;
-    border-radius: 12px;
-    padding: 3rem 1rem; // Ajuste para móvil
-
-    @include respond-to(md) { // Para 'md' (768px) y mayores
-        padding: 4rem 2rem; // Padding para escritorio
-    }
-
-    .about-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem; // Ajuste para móvil
-      max-width: 900px;
-      margin: 0 auto;
-
-      @include respond-to(md) { // Para 'md' (768px) y mayores
-          gap: 1.5rem; // Espacio para escritorio
-      }
-    }
-
-    .profile-pic {
-      width: 120px; // Tamaño para móvil
-      height: 120px; // Tamaño para móvil
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid $color-accent; // Borde más fino para móvil
-      box-shadow: 0 0 0 6px rgba($color-accent, 0.2); // Sombra más sutil para móvil
-
-      @include respond-to(md) { // Para 'md' (768px) y mayores
-          width: 150px; // Tamaño para escritorio
-          height: 150px; // Tamaño para escritorio
-          border: 5px solid $color-accent;
-          box-shadow: 0 0 0 8px rgba($color-accent, 0.2);
-      }
-    }
-
-    p {
-      font-size: 1rem; // Tamaño para móvil
-      line-height: 1.6;
-      color: $text-light;
-
-      @include respond-to(md) { // Para 'md' (768px) y mayores
-          font-size: 1.1rem; // Tamaño para escritorio
-          line-height: 1.7;
-      }
-    }
-
-    .btn-outline {
-        background: transparent;
-        border: 2px solid $color-primary;
-        color: $color-primary;
-        padding: 0.8rem 1.8rem;
-        border-radius: 50px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-
-        &:hover {
-            background: $color-primary;
-            color: $background-color;
-            transform: translateY(-3px);
-        }
-    }
-  }
-
-
-  .stack {
-    padding: 3rem 1rem; // Ajuste para móvil
-    text-align: center;
-
-    @include respond-to(md) { // Para 'md' (768px) y mayores
-        padding: 4rem 2rem; // Padding para escritorio
-    }
-
-    .stack-description {
-        font-size: 1rem; // Ajuste para móvil
-        color: $text-light;
-        margin-bottom: 2rem; // Ajuste para móvil
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.6;
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            font-size: 1.1rem; // Tamaño para escritorio
-            margin-bottom: 2.5rem; // Margen para escritorio
-        }
-    }
-
-    .stack-icons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem; // Espacio para móvil
-
-      @include respond-to(md) { // Para 'md' (768px) y mayores
-          gap: 2.5rem; // Espacio para escritorio
-      }
-
-      svg {
-        font-size: 2.5rem; // Tamaño para móvil
-        color: $color-primary;
-        transition: transform 0.3s, color 0.3s;
-
-        &:hover {
-          transform: translateY(-5px) scale(1.2);
-          color: $color-accent;
-        }
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            font-size: 3.5rem; // Tamaño para escritorio
-        }
-      }
-    }
-  }
-
-  .featured-projects {
-    text-align: center;
-    padding: 3rem 1rem; // Ajuste para móvil
-
-    @include respond-to(md) { // Para 'md' (768px) y mayores
-        padding: 4rem 2rem; // Padding para escritorio
-    }
-
-    .projects-description {
-        font-size: 1rem; // Ajuste para móvil
-        color: $text-light;
-        margin-bottom: 2rem; // Ajuste para móvil
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.6;
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            font-size: 1.1rem; // Tamaño para escritorio
-            margin-bottom: 3rem; // Margen para escritorio
-        }
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: 1fr; // Una columna en móvil por defecto
-      gap: 1.5rem; // Espacio para móvil
-      margin-top: 2rem; // Ajuste para móvil
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-
-      @include respond-to(md) { // Para 'md' (768px) y mayores
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); // 2 o 3 columnas en pantallas medianas/grandes
-        gap: 2rem; // Espacio para escritorio
-        margin-top: 3rem; // Margen para escritorio
-      }
-      @include respond-to(lg) { // Para 'lg' (992px) y mayores, más columnas si es posible
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2.5rem;
-      }
-    }
-
-    .project-card {
-      background: $background-color;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); // Sombra más sutil para móvil
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-
-      &:hover {
-        transform: translateY(-5px); // Menos desplazamiento en hover para móvil
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      }
-
-      img {
-        width: 100%;
-        height: 180px; // Altura para móvil
-        object-fit: cover;
-        border-bottom: 1px solid $gray-200;
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            height: 200px; // Altura para escritorio
-        }
-      }
-
-      h3 {
-        font-size: 1.3rem; // Tamaño para móvil
-        color: $color-primary;
-        margin: 1rem 1rem 0.5rem; // Margen para móvil
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            font-size: 1.5rem; // Tamaño para escritorio
-            margin: 1.5rem 1.5rem 0.5rem; // Margen para escritorio
-        }
-      }
-
-      p {
-        font-size: 0.9rem; // Tamaño para móvil
-        color: $gray-700;
-        margin: 0 1rem 0.8rem; // Margen para móvil
-        flex-grow: 1;
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            font-size: 1rem; // Tamaño para escritorio
-            margin: 0 1.5rem 1rem; // Margen para escritorio
-        }
-      }
-
-      .project-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem; // Espacio para móvil
-        margin: 0 1rem 1rem; // Margen para móvil
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            gap: 0.5rem; // Espacio para escritorio
-            margin: 0 1.5rem 1rem; // Margen para escritorio
-        }
-
-        .tag {
-          background-color: $color-secondary;
-          color: #fff;
-          padding: 0.25rem 0.6rem; // Padding para móvil
-          border-radius: 4px; // Radio más pequeño para móvil
-          font-size: 0.75rem; // Tamaño de fuente para móvil
-          font-weight: 500;
-
-          @include respond-to(md) { // Para 'md' (768px) y mayores
-            padding: 0.3rem 0.7rem; // Padding para escritorio
-            border-radius: 5px;
-            font-size: 0.8rem;
-          }
-        }
-      }
-
-      .btn-details {
-        display: inline-block;
-        background: $color-accent;
-        color: $background-color;
-        padding: 0.7rem 1.2rem; // Padding para móvil
-        border-radius: 0 0 12px 12px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: background 0.3s ease;
-        margin-top: auto;
-        text-align: center;
-        width: 100%;
-
-        &:hover {
-          background: color.scale($color-accent, $lightness: -10%); // Usando sass:color
-        }
-      }
-    }
-
-    .view-all-projects-cta {
-        margin-top: 3rem; // Ajuste para móvil
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            margin-top: 4rem; // Margen para escritorio
-        }
-    }
-  }
-
-
-  .testimonials {
-    margin: 3rem 0; // Ajuste para móvil
-    padding: 3rem 1rem; // Ajuste para móvil
-    background-color: $gray-100;
-    border-radius: 12px; // Ajuste para móvil
-    text-align: center;
-
-    @include respond-to(md) { // Para 'md' (768px) y mayores
-        margin: 4rem 0; // Margen para escritorio
-        padding: 4rem 2rem; // Padding para escritorio
-        border-radius: 16px; // Radio para escritorio
-    }
-
-    .swiper {
-      padding: 2rem 0; // Ajuste para móvil
-    }
-
-    .testimonial-card {
-      background: $background-color;
-      border-radius: 12px; // Ajuste para móvil
-      padding: 2rem; // Ajuste para móvil
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); // Sombra para móvil
-      text-align: left;
-      position: relative;
-      transition: transform 0.4s ease-out;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem; // Ajuste para móvil
-      min-height: 220px; // Altura mínima para móvil
-
-      @include respond-to(md) { // Para 'md' (768px) y mayores
-          border-radius: 16px; // Radio para escritorio
-          padding: 2.5rem; // Padding para escritorio
-          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); // Sombra para escritorio
-          gap: 1.2rem; // Espacio para escritorio
-          min-height: 250px; // Altura mínima para escritorio
-      }
-
-      &:hover {
-        transform: translateY(-5px) scale(1.01); // Menos desplazamiento para móvil
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            transform: translateY(-8px) scale(1.02); // Más énfasis para escritorio
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-      }
-
-      .stars {
-        color: #facc15;
-        font-size: 1rem; // Ajuste para móvil
-      }
-
-      p {
-        font-style: italic;
-        color: $gray-700;
-        font-size: 0.95rem; // Ajuste para móvil
-        line-height: 1.5;
-        flex-grow: 1;
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            font-size: 1.05rem; // Tamaño para escritorio
-            line-height: 1.6;
-        }
-      }
-
-      .author {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem; // Ajuste para móvil
-        margin-top: 0.8rem; // Ajuste para móvil
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            gap: 1rem; // Espacio para escritorio
-            margin-top: 1rem; // Margen para escritorio
-        }
-
-        img {
-          width: 48px; // Tamaño para móvil
-          height: 48px; // Tamaño para móvil
-          border-radius: 50%;
-          object-fit: cover;
-          border: 2px solid $color-accent;
-
-          @include respond-to(md) { // Para 'md' (768px) y mayores
-              width: 55px; // Tamaño para escritorio
-              height: 55px; // Tamaño para escritorio
-          }
-        }
-
-        strong {
-          color: $color-accent;
-          display: block;
-          font-size: 1rem;
-        }
-
-        span {
-          font-size: 0.85rem; // Ajuste para móvil
-          color: $gray-600;
-
-          @include respond-to(md) { // Para 'md' (768px) y mayores
-              font-size: 0.95rem; // Tamaño para escritorio
-          }
-        }
-      }
-
-      .quote-icon {
-        position: absolute;
-        bottom: 1rem; // Ajuste para móvil
-        right: 1rem; // Ajuste para móvil
-        font-size: 2rem; // Ajuste para móvil
-        color: $color-accent;
-        opacity: 0.1;
-
-        @include respond-to(md) { // Para 'md' (768px) y mayores
-            bottom: 1.5rem; // Posición para escritorio
-            right: 1.5rem; // Posición para escritorio
-            font-size: 2.5rem; // Tamaño para escritorio
-        }
-      }
-    }
-    .swiper-pagination-bullet {
-      background: $gray-400;
-      opacity: 0.7;
-      transition: all 0.3s ease;
-
-      &.swiper-pagination-bullet-active {
-        background: $color-accent;
-        width: 20px;
-        border-radius: 5px;
-        opacity: 1;
-      }
-    }
-  }
-
-  .final-cta {
-  text-align: center;
-  padding: 4rem 1.5rem;
-  background: linear-gradient(135deg, $color-primary 0%, $gray-900 100%);
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 1s ease-out;
-
-  @include respond-to(md) {
-    padding: 6rem 3rem;
-  }
-
-  .wave-title {
-    color: white;
-    margin-bottom: 1.5rem;
-
-    span {
-      color: white;
-    }
-  }
-
-  p {
-    font-size: 1.15rem;
-    color: $gray-200;
-    max-width: 800px;
-    margin: 1.5rem auto 2.5rem;
-    line-height: 1.7;
+    margin-bottom: $space-24;
+    padding: 0 $space-4;
 
     @include respond-to(md) {
-      font-size: 1.3rem;
+      padding: 0 $space-8;
+    }
+  }
+}
+
+// ============================================
+// HERO SECTION
+// ============================================
+
+.hero {
+  text-align: center;
+  @include flex-column-center;
+  min-height: 60vh;
+  padding: $space-12 $space-4;
+
+  @include respond-to(md) {
+    min-height: 80vh;
+    padding: $space-20 $space-8;
+  }
+
+  .hero-title {
+    font-size: $font-4xl;
+    font-weight: 700;
+    color: $color-primary;
+    margin-bottom: $space-6;
+
+    @include respond-to(md) {
+      font-size: $font-5xl;
+      margin-bottom: $space-8;
+    }
+  }
+
+  .tagline {
+    font-size: $font-base;
+    color: $text-light;
+    max-width: 800px;
+    line-height: $line-height-relaxed;
+    margin-bottom: $space-8;
+
+    @include respond-to(md) {
+      font-size: $font-lg;
+    }
+  }
+
+  .cta-buttons {
+    @include flex-center;
+    flex-direction: column;
+    gap: $space-4;
+    width: 100%;
+    max-width: 400px;
+
+    @include respond-to(md) {
+      flex-direction: row;
+      max-width: none;
+      gap: $space-6;
+    }
+  }
+
+  .btn {
+    padding: $space-3 $space-6;
+    font-weight: 600;
+    border-radius: $radius-full;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all $transition-base ease;
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+
+    @include respond-to(md) {
+      width: auto;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
     }
   }
 
   .btn-primary-cta {
-    background-color: $color-accent;
-    color: $gray-900;
-    font-size: 1.1rem;
-    font-weight: 700;
-    padding: 0.9rem 2rem;
-    border: none;
-    border-radius: 8px;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    background: linear-gradient(135deg, $color-accent, color.scale($color-accent, $lightness: -10%));
+    color: white;
+    box-shadow: $shadow-accent;
 
     &:hover {
-      background-color: color.adjust($color-accent, $lightness: 10%);
-      transform: scale(1.05);
+      box-shadow: 0 12px 28px rgba($color-accent, 0.5);
+    }
+  }
+
+  .btn-secondary-cta {
+    background: $color-secondary;
+    color: white;
+    box-shadow: $shadow-secondary;
+
+    &:hover {
+      background: color.scale($color-secondary, $lightness: -8%);
+      box-shadow: 0 12px 28px rgba($color-secondary, 0.5);
+    }
+  }
+
+  .btn-tertiary-cta {
+    background: transparent;
+    border: 2px solid $color-primary;
+    color: $color-primary;
+
+    &:hover {
+      background: $color-primary;
+      color: $background-color;
+      box-shadow: $shadow-primary;
     }
   }
 }
 
-  .wave-title {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem; // Ajuste para móvil
-    font-size: 1.8rem; // Tamaño para móvil
-    font-weight: bold;
+// ============================================
+// ABOUT SUMMARY
+// ============================================
+
+.about-summary {
+  text-align: center;
+  background: white;
+  border: 1px solid $gray-200;
+  box-shadow: $shadow-md;
+  border-radius: $radius-xl;
+  padding: $space-12 $space-6 $space-10;
+  max-width: 900px;
+  margin: 0 auto;
+
+  .about-content {
+    @include flex-column-center;
+    gap: $space-6;
+    width: 100%;
+  }
+
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: $radius-full;
+    object-fit: cover;
+    border: 4px solid $color-accent;
+    box-shadow: 0 0 0 8px rgba($color-accent, 0.15);
+
+    @include respond-to(md) {
+      width: 180px;
+      height: 180px;
+    }
+  }
+
+  .section-title {
+    font-size: $font-3xl;
+    font-weight: 700;
     color: $color-accent;
+    margin-bottom: $space-6;
+  }
 
-    // Ya que 'fluid-type' no está en tus mixins proporcionados, lo he comentado.
-    // @include fluid-type($min-font-size: 1.8rem, $max-font-size: 2.5rem, $min-vw: 320px, $max-vw: 1400px);
+  p {
+    font-size: $font-base;
+    color: $text-light;
+    line-height: $line-height-relaxed;
 
-    @include respond-to(md) { // Para 'md' (768px) y mayores
-        font-size: 2.5rem; // Tamaño para escritorio
-        margin-bottom: 2rem; // Margen para escritorio
-    }
-
-    span {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: waveText 0.5s ease-out forwards;
-      white-space: pre;
-    }
-
-    .space {
-      width: 0.5rem;
+    @include respond-to(md) {
+      font-size: $font-lg;
     }
   }
 }
 
-// Animaciones (sin cambios)
-@keyframes waveText {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+// ============================================
+// TECH STACK
+// ============================================
+
+.stack {
+  text-align: center;
+  padding: $space-12 $space-4;
+
+  .stack-description {
+    font-size: $font-base;
+    color: $text-light;
+    margin-bottom: $space-8;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include respond-to(md) {
+      font-size: $font-lg;
+      margin-bottom: $space-10;
+    }
+  }
+
+  .stack-icons {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: $space-6;
+
+    @include respond-to(md) {
+      gap: $space-8;
+    }
+
+    .tech-icon {
+      svg {
+        font-size: $font-3xl;
+        color: $color-primary;
+        transition: all $transition-base;
+
+        &:hover {
+          transform: translateY(-4px) scale(1.1);
+          color: $color-accent;
+        }
+
+        @include respond-to(md) {
+          font-size: $font-4xl;
+        }
+      }
+    }
   }
 }
 
-@keyframes wiggle {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(2deg); }
-  50% { transform: rotate(-2deg); }
-  75% { transform: rotate(2deg); }
-  100% { transform: rotate(0deg); }
+// ============================================
+// FEATURED PROJECTS
+// ============================================
+
+.featured-projects {
+  text-align: center;
+  padding: $space-12 $space-4;
+
+  .projects-description {
+    font-size: $font-base;
+    color: $text-light;
+    margin-bottom: $space-8;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include respond-to(md) {
+      font-size: $font-lg;
+      margin-bottom: $space-10;
+    }
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-6;
+    margin-top: $space-8;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: $space-8;
+    }
+  }
+
+  .project-card {
+    background: white;
+    border: 1px solid $gray-200;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    box-shadow: $shadow-sm;
+    transition: all $transition-base;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-lg;
+    }
+
+    h3 {
+      font-size: $font-xl;
+      color: $color-primary;
+      margin: $space-6 $space-6 $space-3;
+
+      @include respond-to(md) {
+        font-size: $font-2xl;
+        margin: $space-8 $space-8 $space-4;
+      }
+    }
+
+    p {
+      font-size: $font-base;
+      color: $text-light;
+      margin: 0 $space-6 $space-6;
+      flex-grow: 1;
+
+      @include respond-to(md) {
+        margin: 0 $space-8 $space-8;
+      }
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $space-2;
+      margin: 0 $space-6 $space-6;
+
+      @include respond-to(md) {
+        margin: 0 $space-8 $space-8;
+      }
+
+      .tag {
+        background: linear-gradient(135deg, $color-secondary, color.scale($color-secondary, $lightness: -10%));
+        color: white;
+        padding: $space-2 $space-3;
+        border-radius: $radius-md;
+        font-size: $font-sm;
+        font-weight: 500;
+      }
+    }
+
+    .btn-details {
+      background: linear-gradient(135deg, $color-accent, color.scale($color-accent, $lightness: -10%));
+      color: white;
+      padding: $space-4;
+      text-decoration: none;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 0 0 $radius-xl $radius-xl;
+
+      &:hover {
+        background: color.scale($color-accent, $lightness: -10%);
+      }
+    }
+  }
+
+  .view-all-projects-cta {
+    margin-top: $space-12;
+  }
+}
+
+// ============================================
+// TESTIMONIALS
+// ============================================
+
+.testimonials {
+  padding: $space-12 $space-4;
+  background: $gray-50;
+  border: 1px solid $gray-200;
+  box-shadow: $shadow-md;
+  border-radius: $radius-xl;
+  text-align: center;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-6;
+    padding: $space-8 0;
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: $space-8;
+    }
+  }
+
+  .testimonial-card {
+    background: white;
+    border: 1px solid $gray-200;
+    border-radius: $radius-xl;
+    padding: $space-8;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+    min-height: 280px;
+    box-shadow: $shadow-sm;
+    transition: all $transition-base;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-lg;
+    }
+
+    @include respond-to(md) {
+      padding: $space-10;
+      gap: $space-6;
+      min-height: 320px;
+    }
+
+    .stars {
+      color: $color-warning;
+      font-size: $font-lg;
+      margin-bottom: $space-2;
+    }
+
+    p {
+      font-style: italic;
+      color: $text-light;
+      font-size: $font-base;
+      line-height: $line-height-relaxed;
+      flex-grow: 1;
+
+      @include respond-to(md) {
+        font-size: $font-lg;
+      }
+    }
+
+    .author {
+      display: flex;
+      align-items: center;
+      gap: $space-4;
+      margin-top: $space-4;
+
+      .avatar-initials {
+        width: 56px;
+        height: 56px;
+        border-radius: $radius-full;
+        background: linear-gradient(135deg, $color-accent, color.scale($color-accent, $lightness: -10%));
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-xl;
+        font-weight: 700;
+        border: 3px solid white;
+        box-shadow: 0 4px 12px rgba($color-accent, 0.3);
+        flex-shrink: 0;
+      }
+
+      strong {
+        color: $color-accent;
+        display: block;
+        font-size: $font-lg;
+      }
+
+      span {
+        font-size: $font-sm;
+        color: $text-muted;
+      }
+    }
+  }
+}
+
+// ============================================
+// FINAL CTA
+// ============================================
+
+.final-cta {
+  text-align: center;
+  padding: $space-24 $space-8;
+  background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+  border-radius: $radius-2xl;
+  box-shadow: $shadow-2xl;
+  position: relative;
+  overflow: hidden;
+
+  @include respond-to(md) {
+    padding: 8rem $space-16;
+  }
+
+  .cta-title {
+    color: white;
+    margin-top: $space-4;
+    margin-bottom: $space-8;
+    font-size: $font-3xl;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: $font-base;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 700px;
+    margin: 0 auto $space-10;
+    line-height: $line-height-relaxed;
+
+    @include respond-to(md) {
+      font-size: $font-lg;
+      margin: 0 auto $space-12;
+    }
+  }
+
+  .btn-primary-cta {
+    background-color: white;
+    color: $color-primary;
+    padding: $space-3 $space-8;
+    font-size: $font-base;
+    font-weight: 600;
+    border-radius: $radius-full;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: $space-8;
+
+    @include respond-to(md) {
+      padding: $space-4 $space-10;
+      font-size: $font-lg;
+      margin-bottom: $space-10;
+    }
+
+    &:hover {
+      background-color: $gray-50;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+// ============================================
+// SHARED STYLES
+// ============================================
+
+.section-title {
+  text-align: center;
+  font-size: $font-3xl;
+  font-weight: 700;
+  color: $color-accent;
+  margin-bottom: $space-6;
+}
+
+.btn-outline {
+  border: 2px solid $color-primary;
+  color: $color-primary;
+  padding: $space-3 $space-6;
+  border-radius: $radius-full;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all $transition-base ease;
+  display: inline-block;
+
+  &:hover {
+    background: $color-primary;
+    color: $background-color;
+    box-shadow: $shadow-primary;
+  }
 }

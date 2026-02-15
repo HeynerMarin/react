@@ -1,7 +1,11 @@
-@use 'sass:color'; // Necesario para funciones como darken/lighten si se usan aquí
-@use './_variables.scss' as *; // Importa tus variables
+@use 'sass:color';
+@use './_variables.scss' as *;
+@use './_mixins.scss' as *;
 
-// 🔄 Reset básico
+// ============================================
+// 🔄 MODERN CSS RESET
+// ============================================
+
 *,
 *::before,
 *::after {
@@ -10,80 +14,352 @@
   box-sizing: border-box;
 }
 
-// 🌐 Estilo base del body
+// ============================================
+// 🌐 BASE STYLES
+// ============================================
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  cursor: none;
+  cursor: auto; // Cursor nativo
   font-family: $font-family-body;
   font-size: $font-size-base;
   line-height: $line-height-base;
   background-color: $background-color;
   color: $text-color;
   min-height: 100vh;
-  overflow-x: hidden; // Previene el scroll horizontal
-}
+  overflow-x: hidden;
 
-// ⛓️ Enlaces
-a {
-  color: $color-primary;
-  text-decoration: none;
-  transition: color 0.2s ease;
+  // Better text rendering
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
 
-  &:hover {
-    color: color.scale($color-primary, $lightness: -10%);
+  // Selection color (tema claro)
+  &::selection {
+    background-color: rgba($color-primary, 0.2);
+    color: $text-color;
   }
 }
 
-// 🧾 Titulares
+// ============================================
+// 📝 TYPOGRAPHY
+// ============================================
+
+// Headings con escala modular
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color: $text-color;
-  margin-bottom: 0.5rem;
-  font-family: $font-family-titles; // Aplicar fuente de títulos
+  margin-bottom: $space-4;
+  font-family: $font-family-titles;
+  line-height: $line-height-tight;
+  letter-spacing: -0.02em;
 }
 
-// 📝 Párrafos
+h1 { font-size: $font-4xl; }
+h2 { font-size: $font-3xl; }
+h3 { font-size: $font-2xl; }
+h4 { font-size: $font-xl; }
+h5 { font-size: $font-lg; }
+h6 { font-size: $font-base; }
+
+// Paragraphs
 p {
-  margin-bottom: 1rem;
+  margin-bottom: $space-4;
+  color: $text-light;
+  line-height: $line-height-relaxed;
+  max-width: 65ch; // Optimal reading length
+}
+
+// Links mejorados
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color 150ms ease;
+  position: relative;
+
+  &:hover {
+    color: $color-secondary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 4px;
+    border-radius: $radius-sm;
+  }
+}
+
+// Strong y Em
+strong {
+  font-weight: 700;
+  color: $text-color;
+}
+
+em {
+  font-style: italic;
   color: $text-light;
 }
 
-// 🔘 Formularios
+// Code
+code {
+  font-family: $font-family-mono;
+  font-size: 0.9em;
+  background-color: $gray-100;
+  color: $color-primary;
+  padding: $space-1 $space-2;
+  border-radius: $radius-sm;
+  border: 1px solid $gray-200;
+}
+
+pre {
+  background-color: $gray-100;
+  padding: $space-4;
+  border-radius: $radius-lg;
+  overflow-x: auto;
+  margin-bottom: $space-4;
+  border: 1px solid $gray-200;
+
+  code {
+    background: none;
+    padding: 0;
+    color: $text-color;
+    border: none;
+  }
+}
+
+// ============================================
+// 🔘 FORM ELEMENTS
+// ============================================
+
 input,
 textarea,
 select,
 button {
   font-family: inherit;
   font-size: inherit;
-  outline: none;
+  line-height: inherit;
 }
 
 input,
 textarea,
 select {
-  padding: 0.5rem;
+  width: 100%;
+  padding: $space-3 $space-4;
   border: 1px solid $gray-300;
-  border-radius: 6px;
+  border-radius: $radius-md;
   background-color: white;
-  color: $text-color; // Asegura que el texto en inputs sea legible
+  color: $text-color;
+  transition: all 200ms ease;
+
+  &::placeholder {
+    color: $gray-500;
+  }
 
   &:focus {
+    outline: none;
     border-color: $color-primary;
-    box-shadow: 0 0 0 3px rgba($color-primary, 0.2); // Efecto de foco sutil
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+    background-color: white;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: $gray-100;
   }
 }
 
-// 🎯 Utilidades rápidas
-.text-center {
-  text-align: center;
+textarea {
+  resize: vertical;
+  min-height: 100px;
 }
 
-.mt-1 { margin-top: $spacing-unit; }
-.mt-2 { margin-top: $spacing-unit * 2; }
-.mb-1 { margin-bottom: $spacing-unit; }
-.mb-2 { margin-bottom: $spacing-unit * 2; }
+// Buttons reset
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
 
-// Puedes añadir más utilidades aquí, por ejemplo:
-.p-1 { padding: $spacing-unit; }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// ============================================
+// 📊 LAYOUT UTILITIES
+// ============================================
+
+// Container
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $space-4;
+
+  @media (min-width: $breakpoint-md) {
+    padding: 0 $space-6;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    padding: 0 $space-8;
+  }
+}
+
+// Section
+.section {
+  padding: $space-16 0;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $space-24 0;
+  }
+}
+
+// ============================================
+// 🎨 UTILITY CLASSES
+// ============================================
+
+// Text alignment
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+// Text colors
+.text-primary { color: $color-primary; }
+.text-secondary { color: $color-secondary; }
+.text-accent { color: $color-accent; }
+.text-muted { color: $text-muted; }
+.text-light { color: $text-light; }
+
+// Spacing - Margin
+.mt-0 { margin-top: $space-0; }
+.mt-1 { margin-top: $space-2; }
+.mt-2 { margin-top: $space-4; }
+.mt-3 { margin-top: $space-6; }
+.mt-4 { margin-top: $space-8; }
+
+.mb-0 { margin-bottom: $space-0; }
+.mb-1 { margin-bottom: $space-2; }
+.mb-2 { margin-bottom: $space-4; }
+.mb-3 { margin-bottom: $space-6; }
+.mb-4 { margin-bottom: $space-8; }
+
+// Spacing - Padding
+.p-1 { padding: $space-2; }
+.p-2 { padding: $space-4; }
+.p-3 { padding: $space-6; }
+.p-4 { padding: $space-8; }
+
+// Display
 .flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+.hidden { display: none; }
+
+// Flexbox utilities
 .justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
 .items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+
+// Gap utilities
+.gap-1 { gap: $space-2; }
+.gap-2 { gap: $space-4; }
+.gap-3 { gap: $space-6; }
+.gap-4 { gap: $space-8; }
+
+// Border radius
+.rounded-sm { border-radius: $radius-sm; }
+.rounded-md { border-radius: $radius-md; }
+.rounded-lg { border-radius: $radius-lg; }
+.rounded-xl { border-radius: $radius-xl; }
+.rounded-full { border-radius: $radius-full; }
+
+// Overflow
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+
+// Position
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+
+// Width & Height
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+// ============================================
+// ♿ ACCESSIBILITY
+// ============================================
+
+// Skip link for keyboard navigation
+.skip-link {
+  @include visually-hidden;
+
+  &:focus {
+    position: fixed;
+    top: $space-4;
+    left: $space-4;
+    z-index: $z-tooltip;
+    padding: $space-3 $space-4;
+    background-color: $color-primary;
+    color: $background-color;
+    border-radius: $radius-md;
+    font-weight: 600;
+    clip: auto;
+    width: auto;
+    height: auto;
+  }
+}
+
+// Focus visible para mejor accesibilidad
+:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 4px;
+  border-radius: $radius-sm;
+}
+
+// Screen reader only
+.sr-only {
+  @include visually-hidden;
+}
+
+// ============================================
+// 🎭 ANIMATIONS
+// ============================================
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}

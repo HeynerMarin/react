@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import { FaLinkedin, FaWhatsapp, FaEnvelope } from 'react-icons/fa'; // Importing icons
 import './Contact.scss'; // SCSS for styling
 
+// SEO Components
+import SEO from "../../components/SEO/SEO";
+import { WebPageSchema, BreadcrumbSchema } from "../../components/SEO/StructuredData";
+import { getMetaDescription, getMetaTitle, getKeywords, getFullUrl } from "../../config/seo.config";
+
 // Assuming TitleWave is a common component as used in About.jsx
 const TitleWave = ({ text }) => (
     <h2 className="wave-title">
@@ -19,8 +24,38 @@ const TitleWave = ({ text }) => (
 );
 
 const Contact = () => {
+    // SEO Configuration
+    const pageTitle = getMetaTitle('contact');
+    const pageDescription = getMetaDescription('contact');
+    const pageKeywords = getKeywords('contact');
+    const pageUrl = getFullUrl('/contacto');
+
     return (
-        <div className="contact-page">
+        <>
+            {/* SEO Meta Tags */}
+            <SEO
+                title={pageTitle}
+                description={pageDescription}
+                keywords={pageKeywords}
+                url={pageUrl}
+                image="/assets/LogoSinFondo.png"
+            />
+
+            {/* Structured Data */}
+            <WebPageSchema
+                title={pageTitle}
+                description={pageDescription}
+                url={pageUrl}
+            />
+
+            <BreadcrumbSchema
+                items={[
+                    { name: 'Inicio', url: '/' },
+                    { name: 'Contacto', url: '/contacto' }
+                ]}
+            />
+
+            <div className="contact-page">
             <section className="contact-hero">
                 <div className="contact-hero-content">
                     <h1 className="main-title">Ponte en Contacto</h1>
@@ -43,7 +78,7 @@ const Contact = () => {
                     </a>
 
                     <a
-                        href="https://wa.me/573196489740" // REPLACE with your WhatsApp number (include country code, e.g., +573001234567)
+                        href="https://wa.me/573153719580" // REPLACE with your WhatsApp number (include country code, e.g., +573001234567)
                         target="_blank"
                         rel="noopener noreferrer"
                         className="contact-card whatsapp"
@@ -74,6 +109,7 @@ const Contact = () => {
                 <p>Implementar un formulario de contacto aquí si lo necesitas.</p>
             </section> */}
         </div>
+        </>
     );
 };
 
